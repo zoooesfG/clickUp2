@@ -1,5 +1,6 @@
 import { fetchTasks } from "@/lib/clickup";
 import { HomeProps } from "@/types";
+import Image from "next/image";
 
 export default async function Home({searchParams}:HomeProps) {
   const allTasks = await fetchTasks({
@@ -12,6 +13,16 @@ export default async function Home({searchParams}:HomeProps) {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 w-full">
       {/* <pre>{JSON.stringify(allTasks, null, 2)}</pre> */}
+      <div className="w-4/5 flex justify-between font-bold">
+        <div>
+          <h1 className="text-xl">Work Order</h1>
+          <div>
+            <h2>Request #: {allTasks.id}</h2>
+            <h2>Job #: {allTasks.id}</h2>
+          </div>
+        </div>
+        <Image src="/taylor.png" alt="taylor groupd logo" width={100} height={100}/>
+      </div>
       <div className="w-4/5">
         <div className="section">
           <div className="group">
@@ -66,11 +77,11 @@ export default async function Home({searchParams}:HomeProps) {
         <div className=" grid grid-cols-3 w-full">
           <div>
             <h2 className="title" >Ordered By</h2>
-              <p className="body">{allTasks.name}</p>
+              <p className="body">{allTasks.creator.username}</p>
           </div>
           <div>
             <h2 className="title" >Given To</h2>
-              <p className="body">{allTasks.name}</p>
+              <p className="body">{allTasks.parent}</p>
           </div>
           <div>
             <h2 className="title" >Department</h2>
@@ -79,16 +90,16 @@ export default async function Home({searchParams}:HomeProps) {
         </div>
         <div className=" grid grid-cols-3">
           <div>
-            <h2 className="title" >Order Datey</h2>
-              <p className="body">{allTasks.name}</p>
+            <h2 className="title" >Order Date</h2>
+              <p className="body">{allTasks.date_created}</p>
           </div>
           <div>
             <h2 className="title" >Due Date</h2>
-              <p className="body">{allTasks.name}</p>
+              <p className="body">{allTasks.due_date}</p>
           </div>
           <div>
             <h2 className="title" >Ship</h2>
-              <p className="body">{allTasks.name}</p>
+              <p className="body">{allTasks.start_date}</p>
           </div>
         </div>
       </div>
