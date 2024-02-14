@@ -13,7 +13,7 @@ export default async function Home({searchParams}:HomeProps) {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 w-full">
       {/* <pre>{JSON.stringify(allTasks, null, 2)}</pre> */}
-      <div className="w-4/5 flex justify-between font-bold">
+      <div className="w-4/5 flex justify-between font-bold mb-10">
         <div>
           <h1 className="text-xl">Work Order</h1>
           <div>
@@ -105,7 +105,7 @@ export default async function Home({searchParams}:HomeProps) {
       </div>
       <div className="w-4/5">
         <h2 className="title" >Description</h2>
-        <div className="body" ></div>
+        <div className="body" >{allTasks.description}</div>
       </div>
     </main>
   );
