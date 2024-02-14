@@ -33,13 +33,48 @@ export interface FilterProps{
   required?:boolean}];
   dependencies?:[string];
   linked_tasks?:[string];
-  locations?:[string];
+  locations?:[{
+            id: string,
+            name: string
+        }];
   team_id?:string;
   url?:string;
   sharing?:{public?:boolean;public_share_expires_on?:string;public_fields?:[string];token?:string;seo_optimized?:boolean};permission_level?:string;list?:{id?:string;name?:string;access?:boolean};project?:{id?:string;name?:string;hidden?:boolean;access?:boolean};
   folder?:{id?:string;name?:boolean;hidden?:boolean;access?:boolean};
   space?:{id?:string};
-  attachments?:[string]
+  attachments?:[{
+            id: string,
+            date: string,
+            title: string,
+            type: number,
+            source: number,
+            version: number,
+            extension: string,
+            thumbnail_small: string,
+            thumbnail_medium: string,
+            thumbnail_large: string,
+            is_folder: string,
+            mimetype: string,
+            hidden: boolean,
+            parent_id: string,
+            size: number,
+            total_comments: number,
+            resolved_comments: number,
+            user: {
+                id: number,
+                username: string,
+                email: string,
+                initials: string,
+                color: string,
+                profilePicture: string
+            },
+            deleted: boolean,
+            orientation: string,
+            url: string,
+            email_data: string,
+            url_w_query: string,
+            url_w_host: string
+        }]
 }
 
 export interface HomeProps{
