@@ -60,43 +60,6 @@ interface Task{
   attachments?:[string]
 }
 
-// interface TaskListResult {
-//   results: Task[]
-// }
-
-// export async function getAccessToken(): Promise<string> {
-//   if (!accessToken) {
-//     const clientId = process.env.USERNAME
-//     const secret = process.env.CREDENTIAL
-
-//     const basicAuth = process.env.APIKEY
-
-//     const result = await fetch(baseUrl, {
-//       method: "POST",
-//       headers: {
-//         Authorization: `${basicAuth}`,
-//         "Content-Type": "application/json",
-//       },
-//     })
-
-//     const payload = await result.json()
-//     accessToken = payload.access_token
-//   }
-//   return accessToken
-// }
-// export async function fetchGames(): Promise<TaskListResult> {
-//   const token = await getAccessToken()
-//   const res = await fetch(baseUrl, {
-//     headers: {
-//       Authorization: `${token}`,
-//       "Content-Type": "application/json",
-//     },
-//   })
-
-//   const payload = (await res.json()) as TaskListResult
-//   return payload
-// }
-
 export async function fetchTask(id: string){
 
 

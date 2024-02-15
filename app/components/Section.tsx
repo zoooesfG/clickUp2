@@ -6,7 +6,7 @@ const Section = ({title, value}:{
 
 }) => {
   return (
-    <div>
+    <div className="group">
       <h2 className="title">{title}</h2>
       <p className="body">{value}</p>
     </div>

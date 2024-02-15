@@ -13,10 +13,12 @@
   @apply bg-gray-400 p-2 font-semibold border border-black
 }
 .body{
-  @apply p-2 border border-black
+  @apply p-2 border border-black min-h-5
+
 }
 .group{
   /* @apply flex flex-col border border-black w-1/2 */
+  @apply min-h-5
 }
 .section{
   @apply grid grid-cols-2 w-full
