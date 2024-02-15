@@ -75,14 +75,30 @@ export async function fetchTask(id: string){
   const response = await fetch(`https://api.clickup.com/api/v2/task/${id}`, {headers:headers})
 
   const result = (await response.json()) as Task;
-  // finds
+// ***********************finds*******************************
   var requestedBy = result.custom_fields?.find(
     x => x.name == "Requested By",
   )
-  console.log(requestedBy)
-  var client = result.custom_fields?.find(
-    x => x.name == "Client",
+  var requestedByName = requestedBy?.value?.map(name => name.username)
+  // console.log(requestedByName)
+
+  var jobID = result.custom_fields?.find(
+    x => x.name == "Job#",
   )
-  console.log(client)
+  var jobName = jobID?.value
+
+  // find the section that holds the client data
+  var clientSection = result.custom_fields?.find(
+    x => x.name == "Client"
+  )
+  // find the index of the client
+  var clientIndex = clientSection?.value
+  // get the object that holds the client data from an array of all taylor client data
+  var client = clientSection?.type_config?.options?.find(
+    x => x.orderindex == clientIndex
+  )
+  // get the name of the client from within the object
+  var clientName = client?.name
+  console.log(clientName)
   return result
 }
