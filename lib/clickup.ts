@@ -76,29 +76,24 @@ export async function fetchTask(id: string){
 
   const result = (await response.json()) as Task;
 // ***********************finds*******************************
-  var requestedBy = result.custom_fields?.find(
-    x => x.name == "Requested By",
-  )
+// Ordered By
+  var requestedID = "b3fb5b6b-73b5-4c6e-84c9-b9f96f31cd41"
+  var requestedBy = result.custom_fields?.find(x => x.id == requestedID,)
   var requestedByName = requestedBy?.value?.map(name => name.username)
-  // console.log(requestedByName)
+  console.log(requestedByName)
 
-  var jobID = result.custom_fields?.find(
-    x => x.name == "Job#",
-  )
+// job id
+  var jobID = result.custom_fields?.find( job => job.name == "Job#",)
   var jobName = jobID?.value
+  console.log(jobName)
 
-  // find the section that holds the client data
-  var clientSection = result.custom_fields?.find(
-    x => x.name == "Client"
-  )
-  // find the index of the client
-  var clientIndex = clientSection?.value
-  // get the object that holds the client data from an array of all taylor client data
-  var client = clientSection?.type_config?.options?.find(
-    x => x.orderindex == clientIndex
-  )
-  // get the name of the client from within the object
-  var clientName = client?.name
-  console.log(clientName)
+// Client Name
+  var clientId ="b5de20ea-63fe-4b6b-8b20-564ac842a36d"
+  var clientQuery = result.custom_fields?.find(client => client.id == clientId)
+  var client = clientQuery?.type_config?.options?.find(
+      option => option.orderindex == clientQuery?.value,
+    )
+
+  // console.log(client?.name)
   return result
 }
