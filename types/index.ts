@@ -1,3 +1,4 @@
+
 export interface FilterProps{
   id:string;
   custom_id?:string;
@@ -13,16 +14,6 @@ export interface FilterProps{
   date_done?:string;
   archived?:boolean;
   creator?:{id?:number;username?:string;color?:string;email?:string;profilePicture?:string};
-  assignees?:[
-        {
-            id: number,
-            username: string,
-            color: string,
-            initials: string,
-            email:string,
-            profilePicture: string
-        }
-    ],
   watchers?:[{id?:number;username?:string;color?:string;initials?:string;email?:string;profilePicture?:string}];
   checklists?:[];
   tags?:[];
@@ -48,7 +39,14 @@ export interface FilterProps{
         }];
   team_id?:string;
   url?:string;
-  sharing?:{public?:boolean;public_share_expires_on?:string;public_fields?:[string];token?:string;seo_optimized?:boolean};permission_level?:string;list?:{id?:string;name?:string;access?:boolean};project?:{id?:string;name?:string;hidden?:boolean;access?:boolean};
+  sharing?:{public?:boolean;
+            public_share_expires_on?:string;
+            public_fields?:[string];
+            token?:string;
+            seo_optimized?:boolean};
+  permission_level?:string;
+            list?:{id?:string;name?:string;access?:boolean};
+            project?:{id?:string;name?:string;hidden?:boolean;access?:boolean};
   folder?:{id?:string;name?:boolean;hidden?:boolean;access?:boolean};
   space?:{id?:string};
   attachments?:[{

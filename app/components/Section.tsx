@@ -1,8 +1,8 @@
 
 const Section = ({title, value}:{
 
-    title:string,
-    value:string
+    title?:string,
+    value?:string
 
 }) => {
   return (
