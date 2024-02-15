@@ -60,6 +60,9 @@ interface Task{
   attachments?:[string]
 }
 
+// export async function pdfData(){
+
+// }
 export async function fetchTask(id: string){
 
 
@@ -72,5 +75,14 @@ export async function fetchTask(id: string){
   const response = await fetch(`https://api.clickup.com/api/v2/task/${id}`, {headers:headers})
 
   const result = (await response.json()) as Task;
+  // finds
+  var requestedBy = result.custom_fields?.find(
+    x => x.name == "Requested By",
+  )
+  console.log(requestedBy)
+  var client = result.custom_fields?.find(
+    x => x.name == "Client",
+  )
+  console.log(client)
   return result
 }
