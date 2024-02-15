@@ -39,7 +39,7 @@ export default async function GraphicsOrder ({ id }: {  id: string  }) {
           <div className="body">{task.description}</div>
         </div>
         <div>
-          <h2 className="title">Delivery Information</h2>
+          <h2 className="p-2 font-semibold">Delivery Information</h2>
           <div className="grid grid-cols-3">
             <Section title="Type of Truck Required"/>
             <Section title="Pickup Location"/>
