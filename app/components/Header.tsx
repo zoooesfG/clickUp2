@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
-const Header = ({title, request, job}:{
+const Header = ({title, client, job}:{
   title: string,
-  request?:string,
+  client?:string,
   job?:string
 }) => {
   return (
@@ -10,8 +10,9 @@ const Header = ({title, request, job}:{
         <div>
           <h1 className="text-xl">{title}</h1>
           <div>
-            {request &&<h2>Request #: {request}</h2>}
+
             {job && <h2>Job #: {job}</h2>}
+            {client &&<h2>Client: {client}</h2>}
           </div>
         </div>
         <Image src="/taylor.png" alt="taylor group logo" width={100} height={100}/>

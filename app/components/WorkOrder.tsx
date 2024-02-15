@@ -1,5 +1,5 @@
 import { fetchTask } from "@/lib/clickup";
-import Image from "next/image";
+import Header from "./Header";
 import Section from "./Section";
 
 
@@ -10,18 +10,9 @@ export default async function WorkOrder({ id }: { id: string  }) {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 w-full">
-
+      <Header title="Work Order" job={task.id} />
       {/* <pre>{JSON.stringify(task, null, 2)}</pre> */}
-            <div className="w-4/5 flex justify-between font-bold mb-10">
-        <div>
-          <h1 className="text-xl">Work Order</h1>
-          <div>
-            <h2>Request #: {task.id}</h2>
-            <h2>Job #: {task.id}</h2>
-          </div>
-        </div>
-        <Image src="/taylor.png" alt="taylor group logo" width={100} height={100}/>
-      </div>
+
       <div className="w-full">
         <div className="section">
             <Section title="Description" value={task.name}/>
