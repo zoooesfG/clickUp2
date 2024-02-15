@@ -13,7 +13,16 @@ export interface FilterProps{
   date_done?:string;
   archived?:boolean;
   creator?:{id?:number;username?:string;color?:string;email?:string;profilePicture?:string};
-  assignees?:[];
+  assignees?:[
+        {
+            id: number,
+            username: string,
+            color: string,
+            initials: string,
+            email:string,
+            profilePicture: string
+        }
+    ],
   watchers?:[{id?:number;username?:string;color?:string;initials?:string;email?:string;profilePicture?:string}];
   checklists?:[];
   tags?:[];

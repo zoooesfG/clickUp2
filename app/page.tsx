@@ -1,7 +1,11 @@
 import { fetchTasks } from "@/lib/clickup";
 import { HomeProps } from "@/types";
 import Image from "next/image";
+import Section from "./components/Section";
 
+const startDate =() => {
+
+}
 export default async function Home({searchParams}:HomeProps) {
   const allTasks = await fetchTasks({
     id: searchParams.id,
@@ -10,6 +14,12 @@ export default async function Home({searchParams}:HomeProps) {
     date_created: searchParams.date_created
 
   })
+  const assignees = allTasks.assignees
+
+  const utcSeconds = allTasks.due_date
+  const date = new Date(0);
+  const startDate = date.setUTCSeconds(utcSeconds)
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 w-full">
       {/* <pre>{JSON.stringify(allTasks, null, 2)}</pre> */}
@@ -21,53 +31,44 @@ export default async function Home({searchParams}:HomeProps) {
             <h2>Job #: {allTasks.id}</h2>
           </div>
         </div>
-        <Image src="/taylor.png" alt="taylor groupd logo" width={100} height={100}/>
+        <Image src="/taylor.png" alt="taylor group logo" width={100} height={100}/>
       </div>
       <div className="w-4/5">
         <div className="section">
           <div className="group">
-            <h2 className="title" >Description</h2>
-            <p className="body">{allTasks.name}</p>
+            <Section title="Description" value={allTasks.name}/>
           </div>
           <div className="group">
-            <h2 className="title" >Client</h2>
-            <p className="body">{allTasks.name}</p>
+            <Section title="Client" value={allTasks.name}/>
           </div>
         </div>
         <div className="section">
           <div className="group">
-            <h2 className="title" >Event Name</h2>
-            <p className="body">{allTasks.name}</p>
+            <Section title="Event Name" value={allTasks.project.name}/>
           </div>
           <div className="group">
-            <h2 className="title" >Contact</h2>
-            <p className="body">{allTasks.name}</p>
+            <Section title="Contact" value={allTasks.name}/>
           </div>
         </div>
         <div className="section">
           <div className="group">
-            <h2 className="title" >Event Location</h2>
-            <p className="body">{allTasks.locations.name}</p>
+            <Section title="Event Location" value={allTasks.locations.name}/>
           </div>
           <div className="">
             <div className="grid grid-cols-2">
               <div className="group">
-                <h2 className="title" >Hall</h2>
-                <p className="body">{allTasks.locations.name}</p>
+                <Section title="Hall" value={allTasks.locations.name}/>
               </div>
               <div className="group">
-                <h2 className="title" >Booth Number</h2>
-                <p className="body">{allTasks.name}</p>
+                <Section title="Booth Number" value={allTasks.name}/>
               </div>
             </div>
             <div className="grid grid-cols-2">
               <div className="group">
-                <h2 className="title" >Booth Size</h2>
-                <p className="body">{allTasks.name}</p>
+                <Section title="Booth Size" value={allTasks.name}/>
               </div>
               <div className="group">
-                <h2 className="title" >Height Limit</h2>
-                <p className="body">{allTasks.name}</p>
+                <Section title="Height Limit" value={allTasks.name}/>
               </div>
             </div>
           </div>
@@ -76,36 +77,37 @@ export default async function Home({searchParams}:HomeProps) {
       <div className="w-4/5">
         <div className=" grid grid-cols-3 w-full">
           <div>
-            <h2 className="title" >Ordered By</h2>
-              <p className="body">{allTasks.creator.username}</p>
+            <Section title="Ordered By" value={`${allTasks.creator.username} (${allTasks.creator.email})`}/>
+
           </div>
           <div>
             <h2 className="title" >Given To</h2>
-              <p className="body">{allTasks.parent}</p>
+            <p className="body">
+
+              {assignees?.map((assignee)=>(
+                <p>{assignee.username} ({assignee.email})</p>
+              ))}
+            </p>
           </div>
           <div>
-            <h2 className="title" >Department</h2>
-              <p className="body">{allTasks.name}</p>
+            <Section title="Department" value={allTasks.assignees.username}/>
           </div>
         </div>
         <div className=" grid grid-cols-3">
           <div>
-            <h2 className="title" >Order Date</h2>
-              <p className="body">{allTasks.date_created}</p>
+            <Section title="Order Date" value={allTasks.date_created}/>
           </div>
           <div>
-            <h2 className="title" >Due Date</h2>
-              <p className="body">{allTasks.due_date}</p>
+            <Section title="Due Date" value={allTasks.startDate}/>
           </div>
           <div>
-            <h2 className="title" >Ship</h2>
-              <p className="body">{allTasks.start_date}</p>
+            <Section title="Ship" value={allTasks.start_date}/>
           </div>
         </div>
       </div>
       <div className="w-4/5">
-        <h2 className="title" >Description</h2>
-        <div className="body" >{allTasks.description}</div>
+        <h2 className="title">Description</h2>
+        <div className="body">{allTasks.description}</div>
       </div>
     </main>
   );
