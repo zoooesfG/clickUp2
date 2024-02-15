@@ -22,22 +22,20 @@ export default async function WorkOrder({ id }: { id: string  }) {
         </div>
         <Image src="/taylor.png" alt="taylor group logo" width={100} height={100}/>
       </div>
-      <div className="w-4/5">
+      <div className="w-full">
         <div className="section">
-          <div className="group">
             <Section title="Description" value={task.name}/>
-          </div>
-          <div className="group">
+
             <Section title="Client" value={task.name}/>
-          </div>
+
         </div>
         <div className="section">
-          <div className="group">
+
             <Section title="Event Name" value={task?.project?.name}/>
-          </div>
-          <div className="group">
+
+
             <Section title="Contact" value={task.name}/>
-          </div>
+
         </div>
         <div className="section">
           <div className="group">
@@ -50,27 +48,18 @@ export default async function WorkOrder({ id }: { id: string  }) {
                 <h2 className="title">Hall</h2>
                 {task.locations?.map(location => <div className="body" key={location.id}>{location.name}</div>)}
               </div>
-              <div className="group">
                 <Section title="Booth Number" value={task.name}/>
-              </div>
             </div>
             <div className="grid grid-cols-2">
-              <div className="group">
                 <Section title="Booth Size" value={task.name}/>
-              </div>
-              <div className="group">
                 <Section title="Height Limit" value={task.name}/>
-              </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="w-4/5">
+      <div className="w-full">
         <div className=" grid grid-cols-3 w-full">
-          <div>
             <Section title="Ordered By" value={`${task?.creator?.username} (${task?.creator?.email})`}/>
-
-          </div>
           <div>
             <h2 className="title" >Given To</h2>
             <p className="body">
@@ -80,20 +69,14 @@ export default async function WorkOrder({ id }: { id: string  }) {
               ))}
             </p>
           </div>
-          <div>
-          </div>
+          <Section title="Department"/>
         </div>
         <div className=" grid grid-cols-3">
-          <div>
             <Section title="Order Date" value={task.date_created}/>
-          </div>
-          <div>
             <Section title="Due Date" value={task.start_date}/>
-          </div>
-          <div>
             <Section title="Ship" value={task.start_date}/>
-          </div>
-        </div></div>
+        </div>
+        </div>
     </main>
   );
 }
