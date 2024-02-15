@@ -87,6 +87,11 @@ export async function fetchTask(id: string){
   var jobName = jobID?.value
   console.log(jobName)
 
+// Event Name
+  var eventID = result.custom_fields?.find(event => event.id == "8256b393-603e-464d-a04e-42089017a0cd")
+  var eventName = eventID?.value
+  console.log(eventName)
+
 // Client Name
   var clientId ="b5de20ea-63fe-4b6b-8b20-564ac842a36d"
   var clientQuery = result.custom_fields?.find(client => client.id == clientId)
