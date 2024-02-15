@@ -6,7 +6,7 @@ const Header = ({title, request, job}:{
   job?:string
 }) => {
   return (
-    <div className="w-4/5 flex justify-between font-bold mb-10">
+    <div className="w-full flex justify-between font-bold mb-10">
         <div>
           <h1 className="text-xl">{title}</h1>
           <div>

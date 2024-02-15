@@ -1,5 +1,6 @@
 import { fetchTask } from "@/lib/clickup";
 import GraphicsOrder from "./components/GraphicsOrder";
+import TransportationOrder from "./components/TransportaionOrder";
 import WorkOrder from "./components/WorkOrder";
 
 
@@ -17,6 +18,9 @@ export default async function Home({ searchParams }: { searchParams: { id: strin
       </div>
       <div className="h-full">
         <GraphicsOrder id={"8686nmc8c"}/>
+      </div>
+      <div className="h-full">
+        <TransportationOrder id={"8686nmc8c"}/>
       </div>
     </main>
   );
