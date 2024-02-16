@@ -11,9 +11,16 @@ export interface Assignee {
   profilePicture?: string
 }
 export interface Location {
-  id: string,
-  name: string
-
+  id?: string,
+  name?: string
+}
+export interface Value {
+  location?: {
+                    lat?: number,
+                    lng?: number
+                },
+                place_id?: string,
+                formatted_address?: string
 }
 
 interface Task{
@@ -44,7 +51,7 @@ interface Task{
   time_spent?:number;
   custom_fields?:[
     {id?:string;name?:string;type?:string;type_config?:
-      {default?:number;placeholder?:string;new_drop_down?:boolean;options?:[{id?:string;name?:string;color?:string;orderindex?:number}]};
+      {default?:number;placeholder?:string;new_drop_down?:boolean;options?:[{id?:string;name?:string;value?:Value[];color?:string;orderindex?:number}]};
   date_created?:string;
   hide_from_guests?:boolean;
   value?:string;
@@ -85,12 +92,10 @@ export async function fetchTask(id: string){
 // job id
   var jobID = queryID("26d419ba-7906-4808-9e9f-883b34bf9667",)
   var jobName = jobID?.value
-  // console.log(jobName)
 
 // Event Name
   var eventID = queryID("8256b393-603e-464d-a04e-42089017a0cd")
   var eventName = eventID?.value
-  // console.log(eventName)
 
 // Client Name
   var clientQuery = queryID("b5de20ea-63fe-4b6b-8b20-564ac842a36d")
@@ -152,6 +157,7 @@ var delContact = delQuery?.value
 // Delivery Location
 var dlocQuery = queryID("10f0c75e-a52b-46c9-83ea-3ef461df545f")
 var delLocation = dlocQuery?.value?.formatted_address
+
   return result
 }
 function getDate(date:string):Date{
