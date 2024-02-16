@@ -75,7 +75,7 @@ export async function fetchTask(id: string){
   const response = await fetch(`https://api.clickup.com/api/v2/task/${id}`, {headers:headers})
 
   const result = (await response.json()) as Task;
-  var queryID = (typeId : string) => {result.custom_fields?.find(x => x.id == (typeId))}
+  // var queryID = (typeId : string) => {result.custom_fields?.find(x => x.id == (typeId))}
 // ***********************finds*******************************
 // Ordered By
   var requestedID = "b3fb5b6b-73b5-4c6e-84c9-b9f96f31cd41"
@@ -84,14 +84,14 @@ export async function fetchTask(id: string){
   // console.log(requestedByName)
 
 // job id
-  var jobID = result.custom_fields?.find( job => job.name == "Job#",)
+  var jobID = result.custom_fields?.find( job => job.id == "26d419ba-7906-4808-9e9f-883b34bf9667",)
   var jobName = jobID?.value
   // console.log(jobName)
 
 // Event Name
   var eventID = result.custom_fields?.find(event => event.id == "8256b393-603e-464d-a04e-42089017a0cd")
   var eventName = eventID?.value
-  console.log(eventName)
+  // console.log(eventName)
 
 // Client Name
   var clientId ="b5de20ea-63fe-4b6b-8b20-564ac842a36d"
@@ -114,8 +114,22 @@ export async function fetchTask(id: string){
 //Department
   var deptQuery = result.custom_fields?.find(dept => dept.id == "d2b2d139-2360-4344-ab8b-cc7fa6e09480")
   var deptName = deptQuery?.type_config?.options?.find(option => option.orderindex == deptQuery?.value)
-  console.log(deptName?.name)
+  // console.log(deptName?.name)
 
+//Process
+  var processQuery = result.custom_fields?.find(dept => dept.id == "60e101b0-d6eb-4b59-bf12-1a3340d5eaf8")
+  var processData = processQuery?.type_config?.options?.find(option => option.orderindex == processQuery?.value)
+// console.log(processData?.name)
+
+//Finishing
+  var finishQuery = result.custom_fields?.find(dept => dept.id == "3e7d0f78-5c6f-4b07-80a7-0152da50b6c6")
+  var finish = finishQuery?.type_config?.options?.find(finish => finish.orderindex == finishQuery?.value)
+// console.log(finish?.name)
+
+// Quantity
+  var qtyQuery = result.custom_fields?.find(qty => qty.id == "691f023a-9702-4580-9bf5-92332d9742df")
+  var qty = qtyQuery?.value
+  console.log(qty)
 
   return result
 }
