@@ -75,6 +75,7 @@ export async function fetchTask(id: string){
   const response = await fetch(`https://api.clickup.com/api/v2/task/${id}`, {headers:headers})
 
   const result = (await response.json()) as Task;
+  var queryID = (typeId : string) => {result.custom_fields?.find(x => x.id == (typeId))}
 // ***********************finds*******************************
 // Ordered By
   var requestedID = "b3fb5b6b-73b5-4c6e-84c9-b9f96f31cd41"
@@ -90,6 +91,7 @@ export async function fetchTask(id: string){
 // Event Name
   var eventID = result.custom_fields?.find(event => event.id == "8256b393-603e-464d-a04e-42089017a0cd")
   var eventName = eventID?.value
+  console.log(eventName)
 
 // Client Name
   var clientId ="b5de20ea-63fe-4b6b-8b20-564ac842a36d"
