@@ -80,25 +80,43 @@ export async function fetchTask(id: string){
   var requestedID = "b3fb5b6b-73b5-4c6e-84c9-b9f96f31cd41"
   var requestedBy = result.custom_fields?.find(x => x.id == requestedID,)
   var requestedByName = requestedBy?.value?.map(name => name.username)
-  console.log(requestedByName)
+  // console.log(requestedByName)
 
 // job id
   var jobID = result.custom_fields?.find( job => job.name == "Job#",)
   var jobName = jobID?.value
-  console.log(jobName)
+  // console.log(jobName)
 
 // Event Name
   var eventID = result.custom_fields?.find(event => event.id == "8256b393-603e-464d-a04e-42089017a0cd")
   var eventName = eventID?.value
-  console.log(eventName)
 
 // Client Name
   var clientId ="b5de20ea-63fe-4b6b-8b20-564ac842a36d"
   var clientQuery = result.custom_fields?.find(client => client.id == clientId)
   var client = clientQuery?.type_config?.options?.find(
       option => option.orderindex == clientQuery?.value,
-    )
+    )//client.name
 
-  // console.log(client?.name)
+//Order Date
+  var orderQuery = result.custom_fields?.find(order => order.id == "47894080-6546-4dfa-ba09-a8cedff6db47")
+  var orderDate = getDate(orderQuery?.date_created)
+
+//Due Date
+  var dueDate = getDate(result.due_date)
+
+//Ship Date
+  var shipQuery = result.custom_fields?.find(ship => ship.id == "7960a898-edf3-4eaf-b6ad-56071592e036")
+  var shipDate = getDate(shipQuery?.value!)
+
+//Department
+  var deptQuery = result.custom_fields?.find(dept => dept.id == "d2b2d139-2360-4344-ab8b-cc7fa6e09480")
+  var deptName = deptQuery?.type_config?.options?.find(option => option.orderindex == deptQuery?.value)
+  console.log(deptName?.name)
+
+
   return result
+}
+function getDate(date:string):Date{
+  return new Date(Number(date))
 }
