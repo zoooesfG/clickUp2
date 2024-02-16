@@ -112,41 +112,46 @@ export async function fetchTask(id: string){
 //Department
   var deptQuery = queryID("d2b2d139-2360-4344-ab8b-cc7fa6e09480")
   var deptName = deptQuery?.type_config?.options?.find(option => option.orderindex == deptQuery?.value)
-  // console.log(deptName?.name)
 
 //Process
   var processQuery = queryID("60e101b0-d6eb-4b59-bf12-1a3340d5eaf8")
   var processData = processQuery?.type_config?.options?.find(option => option.orderindex == processQuery?.value)
-// console.log(processData?.name)
 
 //Finishing
   var finishQuery = queryID("3e7d0f78-5c6f-4b07-80a7-0152da50b6c6")
   var finish = finishQuery?.type_config?.options?.find(finish => finish.orderindex == finishQuery?.value)
-// console.log(finish?.name)
 
 // Quantity
   var qtyQuery = queryID("691f023a-9702-4580-9bf5-92332d9742df")
   var qty = qtyQuery?.value
-  // console.log(qty)
 
 // Height
   var heightQuery = queryID("154ee536-ac1f-4be2-8d77-091bef81f0d2")
   var height = heightQuery?.value
-  // console.log(height)
 
 // Width
   var widthQuery = queryID("e965eb35-4997-45e2-bdb1-7c6985d92beb")
   var width = widthQuery?.value
-  // console.log(width)
 
 //Truck
   var truckQuery = queryID("e0e588fe-fc50-4080-81ea-187c5a00fd8a")
   var truck = truckQuery?.value
-  console.log(truck)
 
 //Pickup location
+  var locQuery = queryID("f0564cab-31a8-43cd-8411-deb2e8a7425c")
+  var location = locQuery?.value?.formatted_address
 
+// Pickup Time
+  var pickupQuery = queryID("ea950116-826f-4ca1-843b-de37856c46a5")
+  var pickupTime = pickupQuery?.value
 
+// Delivery Contact
+var delQuery = queryID("3e1dafbf-890d-4485-83a8-07660cadc7f1")
+var delContact = delQuery?.value
+
+// Delivery Location
+var dlocQuery = queryID("10f0c75e-a52b-46c9-83ea-3ef461df545f")
+var delLocation = dlocQuery?.value?.formatted_address
   return result
 }
 function getDate(date:string):Date{
