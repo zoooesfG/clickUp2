@@ -185,7 +185,7 @@ var designFile = () =>{
   if (design?.value) {
     return "ADDED TO CLICKUP"
   }else{
-    return "nah"
+    return ""
   }
 }
 //Graphic File
@@ -194,7 +194,7 @@ var graphicFile = () =>{
   if (graphic?.value) {
     return "ADDED TO CLICKUP"
   }else{
-    return "nah"
+    return ""
   }
 }
 console.log(graphicFile())
