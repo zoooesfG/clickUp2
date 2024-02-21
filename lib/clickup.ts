@@ -104,7 +104,7 @@ export async function fetchTask(id: string){
 // ***********************finds*******************************
 // Ordered By
   var requestedBy = queryID("b3fb5b6b-73b5-4c6e-84c9-b9f96f31cd41")
-  var requestValue:RequestedBy[] = requestedBy!.value! as RequestedBy[]
+  var requestValue:RequestedBy[] = requestedBy?.value! as RequestedBy[]
   var requestedByName = requestValue?.map(name => name.username)
   console.log(requestedByName)
 
@@ -122,7 +122,7 @@ export async function fetchTask(id: string){
 
 //Order Date
   var orderQuery = queryID("47894080-6546-4dfa-ba09-a8cedff6db47")
-  var orderDate = getDate(orderQuery!.date_created!)
+  var orderDate = getDate(orderQuery?.date_created!)
 
 //Due Date
   var dueDate = getDate(result.due_date!)
@@ -162,7 +162,7 @@ export async function fetchTask(id: string){
 
 //Pickup location
   var locQuery = queryID("f0564cab-31a8-43cd-8411-deb2e8a7425c")
-  var locValue:Location = locQuery!.value! as Location
+  var locValue:Location = locQuery?.value! as Location
   var location = locValue?.formatted_address
 
 
@@ -176,7 +176,7 @@ var delContact = delQuery?.value
 
 // Delivery Location
 var dlocQuery = queryID("10f0c75e-a52b-46c9-83ea-3ef461df545f")
-var dlocValue:Location = dlocQuery!.value! as Location
+var dlocValue:Location = dlocQuery?.value! as Location
 var delLocation = dlocValue?.formatted_address
 
 //Design File
