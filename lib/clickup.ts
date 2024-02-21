@@ -85,9 +85,31 @@ interface Task{
   attachments?:[string]
 }
 
-// export async function pdfData(){
+interface OrderData{
+  orderedBy:string,
+  jobID: string,
+  eventName: string,
+  clientName: string,
+  orderDate: string,
+  dueDate: string,
+  shipDate: string,
+  department: string,
+  process: string;
+  finishing: string,
+  quantity: string,
+  height: string,
+  width: string,
+  truck: string,
+  puLocation: string,
+  puTime: string,
+  delContact: string,
+  delLocation: string,
+  desFile: string,
+  graFile:string,
+}
 
-// }
+
+
 export async function fetchTask(id: string){
 
 
@@ -98,6 +120,7 @@ export async function fetchTask(id: string){
   }
 
   const response = await fetch(`https://api.clickup.com/api/v2/task/${id}`, {headers:headers})
+
 
   const result = (await response.json()) as Task;
   var queryID = (typeId : string) => {return result.custom_fields?.find(x => x.id == (typeId))}
