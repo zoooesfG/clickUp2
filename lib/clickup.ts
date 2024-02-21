@@ -68,7 +68,7 @@ interface Task{
   time_spent?:number;
   custom_fields?:[
     {id?:string;name?:string;type?:string;type_config?:
-      {default?:number;placeholder?:string;new_drop_down?:boolean;options?:[{id?:string;name?:string;value?:string;color?:string;orderindex?:number}]};
+      {default?:number;placeholder?:string;new_drop_down?:boolean;options?:[{id?:string;name?:string;value?:string;color?:string;orderindex?:number; label?:string}]};
 
   date_created?:string;
   hide_from_guests?:boolean;
@@ -107,6 +107,8 @@ interface OrderData{
   delContact: string,
   delLocation: string,
   file:unknown,
+  warehouse: string,
+  department:string;
 }
 
 
@@ -133,9 +135,7 @@ export async function fetchTask(id: string){
   var requestedBy = queryID("b3fb5b6b-73b5-4c6e-84c9-b9f96f31cd41")
   var requestValue:RequestedBy[] = requestedBy?.value! as RequestedBy[]
   orderData.orderedBy =requestValue?.map(name => name.username) as unknown
-  // var requestedByName = requestValue?.map(name => name.username)
-  // console.log(requestedByName)
-//
+
 // job id
   var jobID = queryID("26d419ba-7906-4808-9e9f-883b34bf9667",)
   orderData.jobID =jobID?.value as string
@@ -154,6 +154,7 @@ orderData.description = result.description as string
   var clientQuery = queryID("b5de20ea-63fe-4b6b-8b20-564ac842a36d")
   var client = clientQuery?.type_config?.options?.find(option => option.orderindex == clientQuery?.value,)
   orderData.clientName = client?.name as string
+
 //Order Date
   var orderQuery = queryID("47894080-6546-4dfa-ba09-a8cedff6db47")
   orderData.orderDate = getDate(orderQuery?.date_created!) as unknown
@@ -203,7 +204,6 @@ orderData.description = result.description as string
   var locValue:Location = locQuery?.value! as Location
   orderData.puLocation = locValue?.formatted_address as string
 
-
 // Pickup Time
   var pickupQuery = queryID("ea950116-826f-4ca1-843b-de37856c46a5")
   orderData.puTime = pickupQuery?.value as string
@@ -217,16 +217,17 @@ var dlocQuery = queryID("10f0c75e-a52b-46c9-83ea-3ef461df545f")
 var dlocValue:Location = dlocQuery?.value! as Location
 orderData.delLocation = dlocValue?.formatted_address as string
 
+//warehouse
+var wareQuery=queryID("f075364a-2ba4-4fc3-9a12-ee2acfa8b102")
+var getWarehouse = wareQuery?.type_config?.options?.find(option => option.id == wareQuery?.value)
+orderData.warehouse = getWarehouse?.label as string
+console.log(getWarehouse)
+
+//department
+
 //Design File
-var design = queryID("24c4c452-45ec-4c51-9897-635424bd121e")
-// orderData.desFile = () =>{
-//   if (design?.value) {
-//     return "ADDED TO CLICKUP" as string
-//   }else{
-//     return "" as string
-//   }
-// }
 //Graphic File
+var design = queryID("24c4c452-45ec-4c51-9897-635424bd121e")
 var graphic = queryID("699bbf73-1570-48ae-a62f-9dabacd5df02")
 orderData.file = () =>{
   if (graphic?.value || design?.value) {
