@@ -10,11 +10,11 @@ export interface Assignee {
   email?:string,
   profilePicture?: string
 }
-export interface Location {
-  id?: string,
-  name?: string
-}
-export interface Value {
+// export interface Location {
+//   id?: string,
+//   name?: string
+// }
+export interface OptionValue {
   location?: {
                     lat?: number,
                     lng?: number
@@ -22,7 +22,24 @@ export interface Value {
                 place_id?: string,
                 formatted_address?: string
 }
+export interface Location {
 
+                location?: {
+                    lat?: number,
+                    lng?: number
+                },
+                place_id?: string,
+                formatted_address?: string
+
+}
+export interface RequestedBy{
+                  id?: number,
+                    username?: string,
+                    email?: string,
+                    color?: string,
+                    initials?: string,
+                    profilePicture?: null
+}
 interface Task{
     id:string;
   custom_id?:string;
@@ -51,14 +68,15 @@ interface Task{
   time_spent?:number;
   custom_fields?:[
     {id?:string;name?:string;type?:string;type_config?:
-      {default?:number;placeholder?:string;new_drop_down?:boolean;options?:[{id?:string;name?:string;value?:Value[];color?:string;orderindex?:number}]};
+      {default?:number;placeholder?:string;new_drop_down?:boolean;options?:[{id?:string;name?:string;value?:string;color?:string;orderindex?:number}]};
+
   date_created?:string;
   hide_from_guests?:boolean;
-  value?:string;
+  value?: Location | RequestedBy[] | string;
   required?:boolean}];
   dependencies?:[string];
   linked_tasks?:[string];
-  locations?:Location[];
+  // locations?:Location[];
   team_id?:string;
   url?:string;
   sharing?:{public?:boolean;public_share_expires_on?:string;public_fields?:[string];token?:string;seo_optimized?:boolean};permission_level?:string;list?:{id?:string;name?:string;access?:boolean};project?:{id?:string;name?:string;hidden?:boolean;access?:boolean};
@@ -86,8 +104,9 @@ export async function fetchTask(id: string){
 // ***********************finds*******************************
 // Ordered By
   var requestedBy = queryID("b3fb5b6b-73b5-4c6e-84c9-b9f96f31cd41")
-  var requestedByName = requestedBy?.value?.map(name => name.username)
-  // console.log(requestedByName)
+  var requestValue:RequestedBy[] = requestedBy!.value! as RequestedBy[]
+  var requestedByName = requestValue?.map(name => name.username)
+  console.log(requestedByName)
 
 // job id
   var jobID = queryID("26d419ba-7906-4808-9e9f-883b34bf9667",)
@@ -103,14 +122,15 @@ export async function fetchTask(id: string){
 
 //Order Date
   var orderQuery = queryID("47894080-6546-4dfa-ba09-a8cedff6db47")
-  var orderDate = getDate(orderQuery?.date_created)
+  var orderDate = getDate(orderQuery!.date_created!)
 
 //Due Date
-  var dueDate = getDate(result.due_date)
+  var dueDate = getDate(result.due_date!)
 
 //Ship Date
   var shipQuery = queryID("7960a898-edf3-4eaf-b6ad-56071592e036")
-  var shipDate = getDate(shipQuery?.value!)
+  var shipValue:string = shipQuery?.value as string
+  var shipDate = getDate(shipValue)
 
 //Department
   var deptQuery = queryID("d2b2d139-2360-4344-ab8b-cc7fa6e09480")
@@ -142,7 +162,9 @@ export async function fetchTask(id: string){
 
 //Pickup location
   var locQuery = queryID("f0564cab-31a8-43cd-8411-deb2e8a7425c")
-  var location = locQuery?.value?.formatted_address
+  var locValue:Location = locQuery!.value! as Location
+  var location = locValue?.formatted_address
+
 
 // Pickup Time
   var pickupQuery = queryID("ea950116-826f-4ca1-843b-de37856c46a5")
@@ -154,7 +176,8 @@ var delContact = delQuery?.value
 
 // Delivery Location
 var dlocQuery = queryID("10f0c75e-a52b-46c9-83ea-3ef461df545f")
-var delLocation = dlocQuery?.value?.formatted_address
+var dlocValue:Location = dlocQuery!.value! as Location
+var delLocation = dlocValue?.formatted_address
 
 //Design File
 var design = queryID("24c4c452-45ec-4c51-9897-635424bd121e")
