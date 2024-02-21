@@ -1,3 +1,4 @@
+"use server"
 import Header from '@/app/components/Header';
 import Section from '@/app/components/Section';
 import { fetchTask } from '@/lib/clickup';
@@ -11,48 +12,50 @@ export default async function GraphicsOrder ({ params } : {
 
     <div className="flex min-h-screen flex-col items-center justify-between p-24 w-full">
 
-      <Header title="Graphics Order" job={task.id} />
+      <Header title="Graphics Order" job={task.jobID} />
       <div className="mx-auto">
         <div className="section">
-            <Section title="Client" value={task.name}/>
-            <Section title="Event Name" value={task?.project?.name}/>
+            <Section title="Client" value={task.clientName}/>
+            <Section title="Event Name" value={task?.eventName}/>
         </div>
         <div className=" grid grid-cols-3">
-            <Section title="Ordered By" value={`${task?.creator?.username} (${task?.creator?.email})`}/>
+            {/* <Section title="Ordered By" value={task?.orderedBy}/> */}
           <div>
             <h2 className="title" >Given To</h2>
             <p className="body">
-              {task.assignees && task.assignees.map((assignee)=>(
+              {/* {task.assignees && task.assignees.map((assignee)=>(
                 <p key={assignee.username}>{assignee.username} ({assignee.email})</p>
-              ))}
+              ))} */}
             </p>
           </div>
-            <Section title="Ship Date" value={task.start_date}/>
+            {/* <Section title="Ship Date" value={task.shipDate}/> */}
         </div>
 
         <div className="grid grid-cols-3">
-            <Section title="Order Date" value={task.date_created}/>
-            <Section title="Due Date" value={task.start_date}/>
+            {/* <Section title="Order Date" value={task.orderDate}/>
+            <Section title="Due Date" value={task.dueDate}/> */}
             <Section title="Warehouse"/>
         </div>
 
         <div>
           <div className="grid grid-cols-3">
-            <Section title="Process"/>
-            <Section title="Finishing"/>
-            <Section title="Quantity"/>
+            <Section title="Process" value={task.process}/>
+            <Section title="Finishing" value={task.finish} />
+            <Section title="Quantity" value={task.qty}/>
           </div>
           <div className="section">
-            <Section title="Height"/>
-            <Section title="Width"/>
-            <Section title="Design File Link"/>
+            <Section title="Height" value={task.height}/>
+            <Section title="Width" value={task.width}/>
+            {/* <Section title="Design File Link" value={task.file}/> */}
           </div>
         </div>
 
 
       <div>
           <h2 className="title">Description</h2>
-          <div className="body">{task.description}</div>
+          <div className="body">
+            {/* {task.description} */}
+            </div>
         </div>
 
       </div>

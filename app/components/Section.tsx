@@ -2,7 +2,7 @@
 const Section = ({title, value}:{
 
     title?:string,
-    value?:string
+    value?:any
 
 }) => {
   return (
