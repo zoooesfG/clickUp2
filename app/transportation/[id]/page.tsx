@@ -17,13 +17,8 @@ export default async function TransportationOrder ({ params } : {
             <div className=" grid grid-cols-3">
                 <Section title="Ordered By" value={task?.orderedBy}/>
               <div>
-                <h2 className="title" >Given To</h2>
-                <p className="body">
+                <Section title="Given To" value={task?.assignee}/>
 
-                  {/* {task.assignees && task.assignees.map((assignee)=>(
-                    <p key={assignee.username}>{assignee.username} ({assignee.email})</p>
-                  ))} */}
-                </p>
               </div>
                 <Section title="Department"/>
             </div>
@@ -35,7 +30,7 @@ export default async function TransportationOrder ({ params } : {
             </div>
             <div>
               <h2 className="title">Description</h2>
-              {/* <div className="body">{task.description}</div> */}
+              <div className="body">{task.description}</div>
             </div>
             <div>
               <h2 className="p-2 font-semibold">Delivery Information</h2>

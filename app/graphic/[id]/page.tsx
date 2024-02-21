@@ -21,12 +21,7 @@ export default async function GraphicsOrder ({ params } : {
         <div className=" grid grid-cols-3">
             {/* <Section title="Ordered By" value={task?.orderedBy}/> */}
           <div>
-            <h2 className="title" >Given To</h2>
-            <p className="body">
-              {/* {task.assignees && task.assignees.map((assignee)=>(
-                <p key={assignee.username}>{assignee.username} ({assignee.email})</p>
-              ))} */}
-            </p>
+            <Section title="Given To" value={task?.assignee}/>
           </div>
             {/* <Section title="Ship Date" value={task.shipDate}/> */}
         </div>
@@ -54,7 +49,7 @@ export default async function GraphicsOrder ({ params } : {
       <div>
           <h2 className="title">Description</h2>
           <div className="body">
-            {/* {task.description} */}
+            {task.description}
             </div>
         </div>
 

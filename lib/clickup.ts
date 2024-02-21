@@ -87,7 +87,9 @@ interface Task{
 
 interface OrderData{
   orderedBy:unknown,
+  assignee:any,
   jobID: string,
+  description: string,
   eventName: string,
   clientName?: string,
   orderDate: any,
@@ -138,7 +140,11 @@ export async function fetchTask(id: string){
   var jobID = queryID("26d419ba-7906-4808-9e9f-883b34bf9667",)
   orderData.jobID =jobID?.value as string
 
+  //assignee
+  orderData.assignee = result.assignees?.map(name => name.username) as any
 
+//description
+orderData.description = result.description as string
 
 // Event Name
   var eventID = queryID("8256b393-603e-464d-a04e-42089017a0cd")
@@ -146,9 +152,8 @@ export async function fetchTask(id: string){
 
 // Client Name
   var clientQuery = queryID("b5de20ea-63fe-4b6b-8b20-564ac842a36d")
-  var client = clientQuery?.type_config?.options?.find(option => option.orderindex == clientQuery?.value,)//client.name
+  var client = clientQuery?.type_config?.options?.find(option => option.orderindex == clientQuery?.value,)
   orderData.clientName = client?.name as string
-  //  console.log(client.name)
 //Order Date
   var orderQuery = queryID("47894080-6546-4dfa-ba09-a8cedff6db47")
   orderData.orderDate = getDate(orderQuery?.date_created!) as unknown
@@ -230,7 +235,7 @@ orderData.file = () =>{
     return "" as string
   }
 }
-console.log(orderData)
+// console.log(orderData)
   return orderData
 }
 function getDate(date:string):Date{
