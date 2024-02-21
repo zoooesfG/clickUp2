@@ -4,8 +4,10 @@ import { fetchTask } from "@/lib/clickup";
 
 
 
-export default async function WorkOrder({ id }: { id: string  }) {
-  const task = await fetchTask(id)
+export default async function WorkOrder({ params } : {
+  params: { id: string}
+}) {
+  const task = await fetchTask(params.id)
 
 
 

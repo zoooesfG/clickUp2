@@ -3,8 +3,10 @@ import Section from '@/app/components/Section';
 import { fetchTask } from '@/lib/clickup';
 
 
-export default async function GraphicsOrder ({ id }: {  id: string  }) {
-  const task = await fetchTask(id)
+export default async function GraphicsOrder ({ params } : {
+  params: { id: string}
+}) {
+  const task = await fetchTask(params.id)
     return (
 
     <div className="flex min-h-screen flex-col items-center justify-between p-24 w-full">
