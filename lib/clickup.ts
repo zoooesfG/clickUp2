@@ -99,9 +99,7 @@ export async function fetchTask(id: string){
 
 // Client Name
   var clientQuery = queryID("b5de20ea-63fe-4b6b-8b20-564ac842a36d")
-  var client = clientQuery?.type_config?.options?.find(
-      option => option.orderindex == clientQuery?.value,
-    )//client.name
+  var client = clientQuery?.type_config?.options?.find(option => option.orderindex == clientQuery?.value,)//client.name
 
 //Order Date
   var orderQuery = queryID("47894080-6546-4dfa-ba09-a8cedff6db47")
@@ -157,6 +155,26 @@ var delContact = delQuery?.value
 // Delivery Location
 var dlocQuery = queryID("10f0c75e-a52b-46c9-83ea-3ef461df545f")
 var delLocation = dlocQuery?.value?.formatted_address
+
+//Design File
+var design = queryID("24c4c452-45ec-4c51-9897-635424bd121e")
+var designFile = () =>{
+  if (design?.value) {
+    return "ADDED TO CLICKUP"
+  }else{
+    return "nah"
+  }
+}
+//Graphic File
+var graphic = queryID("699bbf73-1570-48ae-a62f-9dabacd5df02")
+var graphicFile = () =>{
+  if (graphic?.value) {
+    return "ADDED TO CLICKUP"
+  }else{
+    return "nah"
+  }
+}
+console.log(graphicFile())
 
   return result
 }
