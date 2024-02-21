@@ -1,11 +1,9 @@
-import { fetchTask } from "@/lib/clickup";
 import GraphicsOrder from "./components/GraphicsOrder";
-import TransportationOrder from "./components/TransportaionOrder";
-import WorkOrder from "./components/WorkOrder";
+// import WorkOrder from "./components/WorkOrder";
 
 
 export default async function Home({ searchParams }: { searchParams: { id: string } }) {
-  const task = await fetchTask("8686nmc8c")
+  // const task = await fetchTask("8686nmc8c")
 
 
 
@@ -14,13 +12,13 @@ export default async function Home({ searchParams }: { searchParams: { id: strin
 
       {/* <pre>{JSON.stringify(task, null, 2)}</pre> */}
       <div className="h-full">
-        <WorkOrder id={"8686nmc8c"}/>
+        {/* <WorkOrder id={"8686nmc8c"}/> */}
       </div>
       <div className="h-full">
-        <GraphicsOrder id={"8686nmc8c"}/>
+        <GraphicsOrder id={"8687ca8g6"}/>
       </div>
       <div className="h-full">
-        <TransportationOrder id={"8686nmc8c"}/>
+        {/* <TransportationOrder id={"868716fkm"}/> */}
       </div>
     </main>
   );
