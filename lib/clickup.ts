@@ -162,8 +162,7 @@ orderData.description = result.description as string
 //Due Date
 
   orderData.dueDate = getDate(result.due_date!) as Date
-  console.log(orderData)
-console.log(orderData.dueDate)
+
 //Ship Date
   var shipQuery = queryID("7960a898-edf3-4eaf-b6ad-56071592e036")
   var shipValue:string = shipQuery?.value as string
@@ -238,8 +237,6 @@ var graphic = queryID("699bbf73-1570-48ae-a62f-9dabacd5df02")
   if (graphic?.value || design?.value) {
     orderData.file ="ADDED TO CLICKUP"
   }
-
-console.log(orderData.file)
 
   return orderData
 }
