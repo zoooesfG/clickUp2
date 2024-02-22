@@ -15,7 +15,6 @@ export default async function WorkOrder({ params } : {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 w-full">
       <Header title="Work Order" job={task.jobID} />
-      {/* <pre>{JSON.stringify(task, null, 2)}</pre> */}
 
       <div className="w-full">
         <div className="section">

@@ -27,10 +27,9 @@ export default async function GraphicsOrder ({ params } : {
         </div>
 
         <div className="grid grid-cols-3">
-          {/* {task?.shipDate} */}
             <Section title="Order Date" value={task?.orderDate.toDateString()}/>
             <Section title="Due Date" value={task?.dueDate.toDateString()}/>
-            <Section title="Warehouse"/>
+            <Section title="Warehouse" value={task?.warehouse}/>
         </div>
 
         <div>
