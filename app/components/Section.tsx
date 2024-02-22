@@ -1,4 +1,4 @@
-
+"use server"
 const Section = ({title, value}:{
 
     title?:string,

@@ -92,9 +92,9 @@ interface OrderData{
   description: string,
   eventName: string,
   clientName?: string,
-  orderDate: any,
-  dueDate: unknown,
-  shipDate: unknown,
+  orderDate: Date,
+  dueDate: Date,
+  shipDate: Date,
   dept: string,
   process: string;
   finish: string,
@@ -157,16 +157,17 @@ orderData.description = result.description as string
 
 //Order Date
   var orderQuery = queryID("47894080-6546-4dfa-ba09-a8cedff6db47")
-  orderData.orderDate = getDate(orderQuery?.date_created!) as unknown
+  orderData.orderDate = getDate(orderQuery?.date_created!) as Date
 
 //Due Date
 
-  orderData.dueDate = getDate(result.due_date!) as unknown
-
+  orderData.dueDate = getDate(result.due_date!) as Date
+  console.log(orderData)
+console.log(orderData.dueDate)
 //Ship Date
   var shipQuery = queryID("7960a898-edf3-4eaf-b6ad-56071592e036")
   var shipValue:string = shipQuery?.value as string
-  orderData.shipDate = getDate(shipValue) as unknown
+  orderData.shipDate = getDate(shipValue) as Date
 
 //Department
   var deptQuery = queryID("d2b2d139-2360-4344-ab8b-cc7fa6e09480")
@@ -228,18 +229,21 @@ orderData.warehouse = getWarehouse?.label as string
 var deptQuery = queryID("d2b2d139-2360-4344-ab8b-cc7fa6e09480")
 var getDept = deptQuery?.type_config?.options?.find(option => option.orderindex == deptQuery?.value)
 orderData.department = getDept?.name as string
-console.log(orderData)
 //Design File
 //Graphic File
 var design = queryID("24c4c452-45ec-4c51-9897-635424bd121e")
 var graphic = queryID("699bbf73-1570-48ae-a62f-9dabacd5df02")
 orderData.file = () =>{
   if (graphic?.value || design?.value) {
+    "use server"
     return "ADDED TO CLICKUP" as string
   }else{
+    "use server"
     return "" as string
   }
 }
+
+console.log(orderData.shipDate)
 // console.log(orderData)
   return orderData
 }

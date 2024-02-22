@@ -19,7 +19,7 @@ export default async function GraphicsOrder ({ params } : {
             <Section title="Event Name" value={task?.eventName}/>
         </div>
         <div className=" grid grid-cols-3">
-            {/* <Section title="Ordered By" value={task?.orderedBy}/> */}
+            <Section title="Ordered By" value={task?.orderedBy}/>
           <div>
             <Section title="Given To" value={task?.assignee}/>
           </div>
@@ -27,6 +27,7 @@ export default async function GraphicsOrder ({ params } : {
         </div>
 
         <div className="grid grid-cols-3">
+          {/* {task?.shipDate} */}
             {/* <Section title="Order Date" value={task.orderDate}/>
             <Section title="Due Date" value={task.dueDate}/> */}
             <Section title="Warehouse"/>

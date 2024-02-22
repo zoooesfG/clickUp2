@@ -1,3 +1,4 @@
+"use server"
 import Header from "@/app/components/Header";
 import Section from "@/app/components/Section";
 import { fetchTask } from "@/lib/clickup";
@@ -18,7 +19,6 @@ export default async function WorkOrder({ params } : {
 
       <div className="w-full">
         <div className="section">
-            <Section title="Description" value="filler"/>
             <Section title="Client" value={task.clientName}/>
         </div>
         <div className="section">

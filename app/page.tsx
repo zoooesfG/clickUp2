@@ -1,3 +1,4 @@
+"use server"
 // import GraphicsOrder from "./components/GraphicsOrder";
 import WorkOrder from "./components/WorkOrder";
 
