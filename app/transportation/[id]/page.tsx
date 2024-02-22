@@ -20,7 +20,7 @@ export default async function TransportationOrder ({ params } : {
                 <Section title="Given To" value={task?.assignee}/>
 
               </div>
-                <Section title="Department"/>
+                <Section title="Department" value={task?.department}/>
             </div>
 
             <div className="grid grid-cols-3">

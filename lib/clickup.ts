@@ -160,6 +160,7 @@ orderData.description = result.description as string
   orderData.orderDate = getDate(orderQuery?.date_created!) as unknown
 
 //Due Date
+
   orderData.dueDate = getDate(result.due_date!) as unknown
 
 //Ship Date
@@ -221,10 +222,13 @@ orderData.delLocation = dlocValue?.formatted_address as string
 var wareQuery=queryID("f075364a-2ba4-4fc3-9a12-ee2acfa8b102")
 var getWarehouse = wareQuery?.type_config?.options?.find(option => option.id == wareQuery?.value)
 orderData.warehouse = getWarehouse?.label as string
-console.log(getWarehouse)
+// console.log(getWarehouse)
 
 //department
-
+var deptQuery = queryID("d2b2d139-2360-4344-ab8b-cc7fa6e09480")
+var getDept = deptQuery?.type_config?.options?.find(option => option.orderindex == deptQuery?.value)
+orderData.department = getDept?.name as string
+console.log(orderData)
 //Design File
 //Graphic File
 var design = queryID("24c4c452-45ec-4c51-9897-635424bd121e")
