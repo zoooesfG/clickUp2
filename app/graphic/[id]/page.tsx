@@ -10,7 +10,7 @@ export default async function GraphicsOrder ({ params } : {
   const task = await fetchTask(params.id)
     return (
 
-    <div className="flex min-h-screen flex-col items-center justify-between p-24 w-full">
+    <div className="flex min-h-screen flex-col items-center justify-between p-24 min-w-full">
 
       <Header title="Graphics Order" job={task.jobID} />
       <div className="mx-auto">
@@ -23,26 +23,26 @@ export default async function GraphicsOrder ({ params } : {
           <div>
             <Section title="Given To" value={task?.assignee}/>
           </div>
-            <Section title="Ship Date" value={task.shipDate.toDateString()}/>
+            <Section title="Ship Date" value={task?.shipDate?.toDateString()}/>
         </div>
 
         <div className="grid grid-cols-3">
           {/* {task?.shipDate} */}
-            <Section title="Order Date" value={task.orderDate.toDateString()}/>
-            <Section title="Due Date" value={task.dueDate.toDateString()}/>
+            <Section title="Order Date" value={task?.orderDate.toDateString()}/>
+            <Section title="Due Date" value={task?.dueDate.toDateString()}/>
             <Section title="Warehouse"/>
         </div>
 
         <div>
           <div className="grid grid-cols-3">
-            <Section title="Process" value={task.process}/>
-            <Section title="Finishing" value={task.finish} />
-            <Section title="Quantity" value={task.qty}/>
+            <Section title="Process" value={task?.process}/>
+            <Section title="Finishing" value={task?.finish} />
+            <Section title="Quantity" value={task?.qty}/>
           </div>
           <div className="section">
-            <Section title="Height" value={task.height}/>
-            <Section title="Width" value={task.width}/>
-            {/* <Section title="Design File Link" value={task.file}/> */}
+            <Section title="Height" value={task?.height}/>
+            <Section title="Width" value={task?.width}/>
+            <Section title="Design File Link" value={task.file}/>
           </div>
         </div>
 

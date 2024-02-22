@@ -114,7 +114,7 @@ interface OrderData{
 
 
 
-export async function fetchTask(id: string){
+export async function fetchTask(id: string):Promise<OrderData>{
 
 
   const auth = process.env.APIKEY
@@ -233,17 +233,13 @@ orderData.department = getDept?.name as string
 //Graphic File
 var design = queryID("24c4c452-45ec-4c51-9897-635424bd121e")
 var graphic = queryID("699bbf73-1570-48ae-a62f-9dabacd5df02")
-orderData.file = () =>{
-  if (graphic?.value || design?.value) {
-    "use server"
-    return "ADDED TO CLICKUP" as string
-  }else{
-    "use server"
-    return "" as string
-  }
-}
 
-console.log(orderData.shipDate)
+  orderData.file = "none"
+  if (graphic?.value || design?.value) {
+    orderData.file ="ADDED TO CLICKUP"
+  }
+
+console.log(orderData.file)
 // console.log(orderData)
   return orderData
 }
