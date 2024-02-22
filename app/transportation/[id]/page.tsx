@@ -25,8 +25,8 @@ export default async function TransportationOrder ({ params } : {
             </div>
 
             <div className="grid grid-cols-3">
-                <Section title="Order Date" value={task.orderDate}/>
-                <Section title="Due Date" value={task.dueDate}/>
+                <Section title="Order Date" value={task.orderDate.toDateString()}/>
+                <Section title="Due Date" value={task.dueDate.toDateString()}/>
                 <Section title="Warehouse" value={task.warehouse}/>
             </div>
             <div>

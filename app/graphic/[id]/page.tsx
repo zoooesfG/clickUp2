@@ -23,13 +23,13 @@ export default async function GraphicsOrder ({ params } : {
           <div>
             <Section title="Given To" value={task?.assignee}/>
           </div>
-            <Section title="Ship Date" value={task.shipDate}/>
+            <Section title="Ship Date" value={task.shipDate.toDateString()}/>
         </div>
 
         <div className="grid grid-cols-3">
           {/* {task?.shipDate} */}
-            <Section title="Order Date" value={task.orderDate}/>
-            <Section title="Due Date" value={task.dueDate}/>
+            <Section title="Order Date" value={task.orderDate.toDateString()}/>
+            <Section title="Due Date" value={task.dueDate.toDateString()}/>
             <Section title="Warehouse"/>
         </div>
 

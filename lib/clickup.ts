@@ -248,5 +248,5 @@ console.log(orderData.shipDate)
   return orderData
 }
 function getDate(date:string):Date{
-  return new Date(Number(date)).toDateString()
+  return new Date(Number(date))
 }
