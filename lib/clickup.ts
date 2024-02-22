@@ -223,7 +223,7 @@ orderData.delLocation = dlocValue?.formatted_address as string
 var wareQuery=queryID("f075364a-2ba4-4fc3-9a12-ee2acfa8b102")
 var getWarehouse = wareQuery?.type_config?.options?.find(option => option.id == wareQuery?.value)
 orderData.warehouse = getWarehouse?.label as string
-// console.log(getWarehouse)
+
 
 //department
 var deptQuery = queryID("d2b2d139-2360-4344-ab8b-cc7fa6e09480")
@@ -240,7 +240,7 @@ var graphic = queryID("699bbf73-1570-48ae-a62f-9dabacd5df02")
   }
 
 console.log(orderData.file)
-// console.log(orderData)
+
   return orderData
 }
 function getDate(date:string):Date{
