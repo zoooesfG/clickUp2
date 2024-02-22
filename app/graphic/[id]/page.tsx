@@ -23,7 +23,7 @@ export default async function GraphicsOrder ({ params } : {
           <div>
             <Section title="Given To" value={task?.assignee}/>
           </div>
-            {/* <Section title="Ship Date" value={task.shipDate}/> */}
+            <Section title="Ship Date" value={task.shipDate}/>
         </div>
 
         <div className="grid grid-cols-3">
