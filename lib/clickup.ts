@@ -123,7 +123,7 @@ export async function fetchTask(id: string):Promise<OrderData>{
     Authorization:`${auth}`
   }
 
-  const response = await fetch(`https://api.clickup.com/api/v2/task/${id}`, {headers:headers})
+  const response = await fetch(`https://api.clickup.com/api/v2/task/${id}?include_subtasks=true`, {headers:headers})
 
   var orderData = <OrderData>{}
   const result = (await response.json()) as Task;
@@ -237,7 +237,8 @@ var graphic = queryID("699bbf73-1570-48ae-a62f-9dabacd5df02")
   if (graphic?.value || design?.value) {
     orderData.file ="ADDED TO CLICKUP"
   }
-
+console.log(result)
+console.log(orderData)
   return orderData
 }
 function getDate(date:string):Date{
