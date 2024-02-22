@@ -10,10 +10,7 @@ export interface Assignee {
   email?:string,
   profilePicture?: string
 }
-// export interface Location {
-//   id?: string,
-//   name?: string
-// }
+
 export interface OptionValue {
   location?: {
                     lat?: number,
