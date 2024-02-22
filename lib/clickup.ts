@@ -123,7 +123,7 @@ export async function fetchTask(id: string):Promise<OrderData>{
     Authorization:`${auth}`
   }
 
-  const response = await fetch(`https://api.clickup.com/api/v2/task/${id}?include_subtasks=true`, {headers:headers})
+  const response = await fetch(`https://api.clickup.com/api/v2/task/${id}`, {headers:headers})
 
   var orderData = <OrderData>{}
   const result = (await response.json()) as Task;
