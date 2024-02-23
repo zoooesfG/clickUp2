@@ -1,5 +1,12 @@
+import { fetchTask } from "@/lib/clickup";
 
-const task = await fetchTask("8686yn6h7")
+async function PDF() {
+
+
+//  async function PDF (){
+const task =  fetchTask("8686yn6h7")
+
+// const task = await fetchTask("8686yn6h7")
 var pdf = require("pdf-creator-node");
 var fs = require("fs");
 
@@ -26,16 +33,16 @@ var options = {
     };
     var users = [
   {
-    name: "Shyam",
-    age: "26",
+    title: "Shyam",
+    value: task.jobID,
   },
   {
-    name: "Navjot",
-    age: "26",
+    title: "title",
+    value: "26",
   },
   {
-    name: "Vitthal",
-    age: "26",
+    title: "Vitthal",
+    value: "26",
   },
 ];
 var document = {
@@ -54,3 +61,5 @@ pdf
   .catch((error) => {
     console.error(error);
   });
+
+  }
