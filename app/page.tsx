@@ -1,3 +1,6 @@
+"use server"
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import PDFFile from "./components/pdf";
 
 
 export default async function Home({ searchParams }: { searchParams: { id: string } }) {
@@ -7,6 +10,10 @@ export default async function Home({ searchParams }: { searchParams: { id: strin
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 w-full">
+      <PDFDownloadLink document={<PDFFile />} fileName="FORM">
+      {({loading}) => (loading ? <button>Loading Document...</button> : <button>Download</button> )}
+      </PDFDownloadLink>
+<PDFFile/>
 
       <p>try /workorder/[id] or /transportation/[id] or /graphic/[id]</p>
     </main>
